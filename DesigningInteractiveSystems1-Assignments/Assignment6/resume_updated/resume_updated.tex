@@ -1,0 +1,139 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[10pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\usepackage{lastpage}
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Walter Hartwell}{White}
+\title{}                               % optional, remove / comment the line if not wanted
+% \address{street and number}{postcode city}{country}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+% \phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
+% \phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\phone[mobile]{+1-505-791-1753}                   % optional, remove / comment the line if not wanted
+\email{wwhite.chemist@gmail.com}                               % optional, remove / comment the line if not wanted
+
+% \homepage{www.johndoe.com}                 % optional, remove / comment the line if not wanted
+% \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+ %\photo[64pt][0.4pt]{picture}                       optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+% \quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{\textbf{Personal Information}}
+\cvitem{Date of Birth}{07.09.1958}
+\cvitem{Place of Birth}{Albuquerque, New Mexico}
+\cvitem{Characteristics}{independent, motivated chemist with over 5 years of experience	in supervising students, teaching, and brewing chemicals 	looking looking for a new job as a kindergarten teacher}
+\cvitem{Mobile Phone}{+1-505-791-1753}
+\cvitem{E-mail}{wwhite.chemist@gmail.com}
+\cvitem{Address}{308 Negra Arroyo Lane, Albuquerque, New Mexico, 87104}
+
+\bigskip
+
+
+
+\section{\textbf{Education}}
+\cventry{1980--1986}{California Institute of Technology}{College of Science Pasadena}{}{}{}
+\bigskip
+
+\section{\textbf{Accomplishments}}
+\cvitem{}{Co-founded Gray Matter Technologies}
+\cvitem{}{Teacher of the Year 2018, JP Wynne High School}
+
+\bigskip
+
+\section{\textbf{Experience}}
+
+\cventry{Mar 2002 -- Jan 2009}{Chemistry Instructor}{}{JP Wynne High School}{Albuquerque, New
+	Mexico}{ 
+	\begin{itemize}
+		\item Taught and mentored students on the scientific methods and formulas of basic level chemistry
+	\end{itemize}	
+}
+
+\cventry{Mar 2002 -- Jan 2009}{Lab Technician}{}{Albuquerque Industrial
+	Laundry}{}{ 
+	\begin{itemize}
+		\item Researched, led, and	conducted chemical		analyses on a wide		range of elements, as		well as initiating a		geographic market		strategy for distribution
+	\end{itemize}	
+}
+
+\cventry{2010 -- now}{Co-owner and operator}{}{A1A Carwash in
+	Albuquerque, NM}{}{ 
+	\begin{itemize}
+		\item Played an active role in 		drastically increasing		sales that included day-to-day operations		management and		inventory tracking	\end{itemize}	
+}
+
+\bigskip
+
+\section{\textbf{Skills}}
+	\cvitem{}{ Accounting, sales, and product distribution}
+	\cvitem{}{Proficient in chemical brewing}
+	\cvitem{}{Excellent improvisational skills, especially in high-stress environments}
+	\cvitem{}{Dependable and industrious}
+
+\bigskip
+
+\section{\textbf{References}}
+\cvitem{Saul Goodman}{Saul Goodman \& Associates, New Mexico, 505-503-4455}
+\cvitem{Todd Alquist}{Vamonos Pest Control, New Mexico, 505-772-3446}
+
+%\section{\textbf{Hobbies}}
+%\cvitem{Cultural}{Watching movies, reading books, experiencing with East Asia cousine}
+%\cvitem{Sports}{Orienteering, jogging}
+%\cvitem{Intellectual}{Do-It-Yourself projects related to aquarium and furniture}
+%\cvitem{Technology}{Translating original tech-related news for various websites}
+%
+%\bigskip
+%
+%\section{\textbf{Master}}
+%\cvitem{Purpose}{Improving myself in computer and informatics fields; studying in a long-established  university during my mastership in order to gain vital experience primarily, widening my vision secondarily, and observing the learning environment lastly; hoping to achieve those that are mentioned permanently}
+%\cvitem{Interests} {Artificial intelligence, software engineering/process, software security, IoT, cryptology, mobile application development, operating systems, debugging, algorithms, object-oriented programming}
+
+\bigskip
+
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
+
+
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.
+

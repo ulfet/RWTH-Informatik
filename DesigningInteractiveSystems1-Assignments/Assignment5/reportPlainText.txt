@@ -1,0 +1,91 @@
+Put That There:
+	1) video time 2:30, POSITIVE EXAMPLE
+		
+		Description:
+			Objects such as sea vehicles storing their previous states (such as position or size), and being restored to their previous states just by giving `revert` command via speech.
+
+		Comparison:
+			YES (this feature does exist in current devices).
+			We store the older states of objects in, for example, drawing programs, and we can restore it.
+
+			However, it is different than before in a negative way.
+			In the video, it is shown that it is done just by saying the name of the object, and issuing "make it what it was" command. Nowadays, we do not have voice recognition to point to the object and another voice command to rotate it. It is mostly with selection via other methods such as touching/pointing/clicking, and issuing a similar `revert` command via help of sound recognition or a keyboard.
+
+
+	2) video time 3:30, NEGATIVE EXAMPLE
+
+		Description:
+			Machine not recognizing a request in a complete sense, but still splitting command into two as `command` and `pointed object` and :
+				" ?? (copy)" "THAT"
+			Then only asking for the part that it did not manage to recognize: in our case, the `command` part is not recognized and the machine asks for clarification by saying "What command?", and not asking for the object again, as it recognized it already.
+
+		Comparison:
+			NO (this feature does NOT exist in current devices).
+			Although that we have devices such as Alexa from Amazon or similar gadgets from Google, those gadgets, in their current form, most of the time want the user to repeat the whole request, from its start to its end.
+
+			It is not achieved yet, because the technology is behind it. How Alexa-like gadgets makes sense out of user requests is that they either make an educated guess if they do not fully recognize the request and this leads to user frustration, or they ask the user to repeat the request in its whole form again until it makes a sense to the said gadget. This is due to the fact that the speech recognition works in a contextual manner, and makes sense to the algorithm of the machine it is completely understood, as the lack of contextual information leads to many different speech recognition prediction and this makes it neigh impossible to make sense of the full request.
+
+	3) video time 2:43, NEGATIVE EXAMPLE
+
+		Description:
+			Man pointing to objects & interacting with objects via pointer device strapped to his wrist, and also have the cables of the pointing device going through his shirts' cuffs.
+
+		Comparison:
+			NO (this feature does NOT exist in current devices)
+
+			It could be argued that there are better current device features that cater to a similar purpose. A dedicated pointer capture (also seen in the video) and a dedicated pointer object  to wear, those things did not become mainstream most probably because they are cumbersome & hard to wear, and to add, not so much portable. Instead of those, we have gesture and pointing recognizing technologies that do not need a wearable device to operate. Those devices operate by recognizing the user's posture and hands by image recognition using cameras, and allows user to interact with objects without wearing a device that goes through their bodies via its cables. 
+
+			So, no need for a pointing device and a capture device capturing the pointing device's orientation nowadays, just image recognition to do the same functionality without the burden of two extra devices.
+
+
+Apple Knowledge Navigator
+    4) video time: 2:44, NEGATIVE EXAMPLE
+
+        Description: 
+            Man is talking to maschine "copy the last 30 years at this location has one month intervals" and then he is inserting "credit card looking" pen drive to the machine.
+
+        Comparison:
+			NO (this feature does NOT exist in current devices)
+
+            We do have pen drives and it is really common way to send information from the computer to the user portable device (and vice versa). 
+            But the way of copying data is limited: 
+            1) insert pen drive to the machine
+            2) select files you want to copy
+            3) copy files (for example by dragging the files)
+            We can programm some script which will copy files from certain directory after inserting the pendrive. But nowadays in mainstream usage we do not use advanced voice commands to copy files. Furthermore in the video man told voice command before even inserting the pendrive. So the machine has to remember voice command before even detecting pendrive. That is also not present in current technology.
+
+
+Sun Starfire:
+    5) video time: 00:14 POSITIVE
+
+        Description: 
+            Lady is starting video conference with other person.
+
+        Comparison:
+			YES (this feature does exist in current devices).
+
+        It is really common to communicate with other people using video conference. We are using for example Skype, so we are able to talk with somebody like "face to face", we can see the person in the front of us. 
+        
+
+    6) video time: 2:11, NEGATIVE EXAMPLE
+
+        Description: 
+            Lady is reading article with her friend and then she want to scan one page of the article. She told "let me scan it" and then she flipped around an article and put on the desk.
+
+            Comparison:
+			NO (this feature does NOT exist in current devices)
+
+            In nowadays scanners we have to put a document in the right way (to have intended results). Then we have results in the computer. In video lady does not care where to locate document on the table. Despite this, she has the intended results. That is not present in current scaners. We have scanners exactly for a4, a3 documents for reason.
+	    
+	7) video time: 3:07 POSITIVE
+	
+	Description:
+	Lady in the video wants to create good 3D model. Her friend does it by selecting a man from a video and putting the texture 
+	on a 3D model.
+	
+	Comparison:
+	             Yes (this feature does exist in current devices) 
+		     
+          This feature is used but in slightly different way. Most often it is offered in computer games. In those games, computer player have a possibility to make game character look like him by scanning his face from a photo (similiar to that what a women in a video did with a car commercial). Games that use this feature are for example FIFA or NBA 2K, so it is quite popular today.
+	 
+	8) video time: 

@@ -1,0 +1,21 @@
+-Although 2 bottom buttons might look strange as they're in the middle, but it is a better solution than
+putting them in the corner due to the fits law (it is faster to catch those buttons from far corners). Furthermore,
+we're putting a whole group of buttons in the left top corner. Regarding to Fitts Law, the width of at least
+one button (top left corner) is always infinitive - we can put in this place the most frequalently clickable 
+button. We've also decided to group all buttons in one panel instead of splitting them all over the screen,
+because it's faster to switch between buttons in this case.
+
+
+
+3)
+- Oliver's design is faster because buttons are sticked together in one group. The distance between
+ all corner buttons is shorter. In Krishna`s approach the distance between buttons is bigger. That leads to
+significantly longer selection time.
+ 
+
+-The disadvantage of Oliver's design is that it's easier to missclick a button you want to choose, due to the 
+lack of padding/margins between buttons. The solution for this problem is in Krishna's design. On his design 
+the buttons are divided clearly, so you can distinguish buttons easily. Furthermore, in case of missing a button
+it is very likely that you'll click a blank space (nothing happens). While in Oliver's tool palette missclick will
+lead to running of undesirable program function. That's why every missclick influences overall selection time 
+in a bad way.
