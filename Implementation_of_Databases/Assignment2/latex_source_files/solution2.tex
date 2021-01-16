@@ -1,0 +1,503 @@
+\documentclass[10pt]{article}
+\usepackage[top=50pt,bottom=50pt,left=48pt,right=46pt]{geometry}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage[shortlabels]{enumitem}
+
+% beautifully indenting an environment
+% \begin{addmargin}[1em]{2em}
+% \end{addmargin}
+% args: left margin, right margin
+\usepackage{scrextend}
+
+% for centered p columns in tabular environment
+% \begin{tabular}{|P{2cm}|P{40mm}|P{4cm}|}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% for scaling a tabular table
+\usepackage{graphicx}
+
+\usepackage{listings}
+% for code writing
+% \begin{lstlisting}
+% 	code here
+% \end{lstlisting}
+\lstset{
+	breaklines=true,
+	tabsize=2,
+	basicstyle=\ttfamily,
+}
+
+
+% for comment block
+\usepackage{verbatim}
+
+% for debug purposes
+% \usepackage{showframe}
+
+% for setting section start value
+%\setcounter{section}{2}
+
+% for code writing
+% \begin{lstlisting} code here \end{lstlisting}
+\usepackage{listings}
+\lstset{
+	% numbers=left,
+	breaklines=true,
+	tabsize=2,
+	basicstyle=\ttfamily,
+	literate={\ \ }{{\ }}1,
+	extendedchars=\true
+}
+
+
+
+\newcommand{\indentitem}{\setlength\itemindent{25pt}}
+
+
+
+% Title Page
+\title{Implementation of Databases \\ ~~~ \\ Assignment 2 \\ ~~~ \\ }
+\author{
+	Participants:\\
+	(sorted in last name order)\\
+	Ulfet CETIN\\ 
+	Shreya KAR\\
+	Samuel ROY\\	
+}
+\date{}
+
+\begin{comment}
+	TODO:
+		* Add your last names in the author part
+\end{comment}
+
+
+\begin{document}
+
+	\maketitle
+	
+	\clearpage
+	
+	\section*{Exercise 2.1 (Relational Calculus)}
+	
+	\begin{comment}
+		symbol for element being in the set -> \in
+		universal quant -> \forall
+		existential quant -> \exists
+		and symbol -> \land
+		or symbol -> \lor
+		curly brackets -> \{  \}
+		list brackets -> [\ ]\
+		for new lines -> \\ (use it at the end of the current line, not at the start of the new line)
+		
+		! be careful ! -> underscore(_) is also a special symbol in latex,
+		so use \_ in place of _
+		
+		
+	\end{comment}
+	
+	\begin{enumerate}
+		\item Find the names of employees who are certified to fly aircraft manufactured by Boeing.
+			\begin{itemize}
+				\item TRC \\
+					$ \{\\
+					\hspace*{2em} t \;|\;  \exists e \in employee \; \exists c \in certified \; \exists a \in aircraft \\
+					\hspace*{2em} ( \\
+					\hspace*{4em} t.name = e.name \land a.aircraft\_id = c.aircraft\_id \land \\
+					\hspace*{4em} e.emp\_id = c.emp\_id \land a.manufacturer = "Boeing"\\
+					\hspace*{2em})\\
+					\}$
+					
+				\item DRC\\
+					$ \{\\
+					\hspace*{2em} <n> \;|\;  \exists a,e,m ( <e,n>\in employee \land <a,m> \in aircraft \land <a,e> \in  certified \land m="Boeing")
+					\}$
+					
+			\end{itemize}
+		
+		\item Find the aircraft ids of all aircrafts that can be used on non-stop flights (i.e. where the aircraft.range > flights.distance) from Vancouver to Tokyo.
+			\begin{itemize}
+				\item TRC \\
+					$ \{\\
+				\hspace*{2em} t \;|\;  \exists a \in aircraft \; \exists f \in flights \\
+				\hspace*{2em} ( \\
+				\hspace*{4em} t.aircraft\_id = a.aircraft\_id \land f.from ='Vancouver' \land \\\hspace*{4em} f.to ='Tokyo' \land a.range\;> \;f.distance \\
+				\hspace*{2em})\\
+				\}$
+				
+				
+				\item DRC \\
+					$ \{\\
+				\hspace*{2em} <a> \;|\;  \exists r,f,t,d ( <f,t,d> \in flights \land <a,r> \in aircraft\land\\
+				\hspace*{2em} f='Vancouver'\land t='Tokyo'\land r>dist\\
+				\}$
+				
+			\end{itemize}
+		
+		\item Find the names of pilots who can operate planes with a range greater than 3000 miles but are not certified on any aircraft manufactured by Boeing.
+			\begin{itemize}
+				\item TRC \\
+				$ \{\\
+				\hspace*{2em}	t \;|\;  \exists e \in employee \; \exists c \in certified \; \exists a \in aircraft \\
+				\hspace*{2em} ( \\
+				\hspace*{4em} 	t.name = e.name \land a.aircraft\_id = c.aircraft\_id \land \\
+				\hspace*{4em} 	e.emp\_id = c.emp\_id \land a.range > 3000 \land\\
+				\hspace*{4em}	\forall a1 \in aircraft \\
+				\hspace*{6em}		(\\
+				\hspace*{8em}			a1.manufacturer = "Boeing" \land \\
+				\hspace*{8em}			\exists c1 \in certified \; \exists e1 \in employee\\
+				\hspace*{8em}			( \\
+				\hspace*{10em}				(a1.aircraft\_id = c1.aircraft\_id \land c1.emp\_id = e1.emp\_id) \Rightarrow\\
+				\hspace*{10em}				e1.emp\_id \neq e.emp\_id\\
+				\hspace*{8em}			)\\
+				\hspace*{6em}		)\\
+				\hspace*{2em})\\
+				\}$
+				
+				\clearpage
+				\item DRC \\
+				
+				$ \{\\
+				\hspace*{2em}NAME \;|\; \exists \; EID, NAME, SALARY, AID, MANUFACTURER, MODEL, RANGE \\
+				\hspace*{2em}(\\
+				\hspace*{4em} \langle EID, NAME, SALARY \rangle \in employee \; \land\\
+				\hspace*{4em}  \langle EID, AID \rangle \in certified \; \land\\
+				\hspace*{4em}  \langle AID, MANUFACTURER, MODEL, RANGE \rangle \in aircraft\; \land\\
+				\hspace*{4em} RANGE > 30000 \land\\
+				\hspace*{4em}\forall AID_x, MODEL_x, RANGE_x \\
+				\hspace*{4em}(\\
+				\hspace*{6em} \langle AID_x, "BOEING", MODEL_x, RANGE_x \rangle \in aircraft \land\\
+				\hspace*{6em} \exists EID_x, NAME_x, SALARY_x\\
+				\hspace*{6em} (\\
+				\hspace*{8em}  (\\
+				\hspace*{10em}	\langle EID_x, AID_x \rangle \in certified \; \land\\
+				\hspace*{10em} \langle EID_x, NAME_x, SALARY_x, \rangle \in employee \\
+				\hspace*{8em}  ) \Rightarrow EID_x \neq EID \\
+				\hspace*{6em} )\\
+				%
+				\hspace*{4em})\\
+				\hspace*{2em})\\
+				\}$
+				
+			\end{itemize}
+		
+		\item Find the employee id’s of the employees who make the highest salary.
+				\begin{itemize}
+					\item TRC \\
+					\\
+					$ \{\\
+					\hspace*{2em} t \;|\;  \exists e1 \in employee \;  \\
+					\hspace*{4em}(\\
+					\hspace*{6em} t.emp\_id = e1.emp\_id \land\\
+					\hspace*{6em} \neg( \exists e2 \in employee( e2.salary>e1.salary \land e1.emp\_id \neq e2.emp\_id) )\\
+					\hspace*{4em})\\
+					\}$
+					
+					\item DRC \\
+					
+					
+					$
+					\{\\
+					\hspace*{2em} <e1> \;|\;  \exists n1,s1\\
+					\hspace*{2em} (\\
+					\hspace*{4em} 	<e1,n1,s1> \in employees \land \\
+					\hspace*{4em}	\neg (\exists e2,n2,s2\\
+					\hspace*{7em} (\\
+					\hspace*{9em} <e2,n2,s2> \in employees\land e2 \neq e1 \land s2>s1\\
+					\hspace*{7em} )\\
+					\hspace*{5em} )\\
+					\hspace*{2em} )\\
+					\}
+					$
+				\end{itemize}
+				
+	\end{enumerate}
+	
+	\clearpage
+	
+	
+	\section*{Exercise 2.2 (Sorting)}
+		Suppose you have a file of 20,000 pages and five buffer pages and you are sorting it using general (external) merge-sort.
+		
+		\begin{enumerate}
+			\item How many runs will you produce? Remark: When a file is sorted, in intermediate steps subfiles are created. Each sorted subfile is called a run. \\
+			
+			
+			
+			
+			\begin{figure}[!htb]
+				\centering
+				\begin{minipage}[t]{0.4\textwidth}
+					\begin{tabular}{p{\textwidth}}
+						Question does not specify which \#runs is required to mention for which step (zeroth pass, first pass, ...).\\
+						
+						\\
+						
+						We assume what is asked is the total number of runs produced during the whole sorting procedure.\\
+						
+						\\
+						
+						In the following table, you can find how many runs are produced in the individual steps, and the total sum.
+					\end{tabular}
+				\end{minipage}%				
+				\begin{minipage}{0.8\textwidth}
+					\begin{table}[H]
+						\centering
+						\scalebox{0.6}{
+							\begin{tabular}{|P{2cm}|P{40mm}|P{4cm}|}
+								\hline
+								& & \\
+								Pass No & How We Calculate It & Number of Runs \\
+								\hline
+								& & \\					
+								0		& $ \Big\lceil {20000} \Big/ {5} \Big\rceil = \Big\lceil 4000 \Big\rceil$ & 4000 \\
+								& & \\
+								\hline
+								& & \\
+								1		& $ \Big\lceil {4000} \Big/ {4} \Big\rceil = \Big\lceil 1000 \Big\rceil$ &  1000\\
+								& & \\
+								\hline
+								& & \\
+								2		& $ \Big\lceil {1000} \Big/ {4} \Big\rceil = \Big\lceil 250 \Big\rceil$ & 250 \\
+								& & \\
+								\hline
+								& & \\
+								3		& $ \Big\lceil {250} \Big/ {4} \Big\rceil = \Big\lceil 62.5 \Big\rceil$ &  63\\
+								& & \\
+								\hline
+								& & \\
+								4		& $ \Big\lceil {63} \Big/ {4} \Big\rceil = \Big\lceil  15.75 \Big\rceil$ &  16\\
+								& & \\
+								\hline
+								& & \\
+								5		& $ \Big\lceil {16} \Big/ {4} \Big\rceil = \Big\lceil  4 \Big\rceil$ &  4\\
+								& & \\
+								\hline
+								& & \\
+								6		& $ \Big\lceil {4} \Big/ {4} \Big\rceil = \Big\lceil  1 \Big\rceil$ &  1\\
+								& & \\
+								\hline
+								& & \\
+								Total & & 5334 \\
+								& & \\
+								\hline
+								
+							\end{tabular}
+						}
+					\end{table}
+				\end{minipage}
+			\end{figure}
+			
+				
+			
+					
+			\item How many passes will it take to sort the file completely?
+				
+				\begin{figure}[!htb]
+					\centering
+					\begin{minipage}{0.34\textwidth}
+						\centering
+					\end{minipage}%
+
+					\begin{minipage}{0.45\textwidth}
+						Number of Passes = 1 + log$_{B-1}$$ \lceil {N} / {B} \rceil$ 
+						
+						\hspace{8em}= 1 + log$_{4}$$ \lceil {20000} / {5} \rceil$
+						
+						\hspace{8em}= 1 + $\lceil 5.9828921423310435 \rceil$
+						
+						\hspace{8em}= 7
+					\end{minipage}					
+					
+					
+					\begin{minipage}{0.2\textwidth}
+						\centering
+					\end{minipage}
+				\end{figure}
+				
+				
+			
+			\item How many buffer pages do you need at least to sort the file in two passes?
+			
+				Let B denote the number of buffer pages available in the system.
+				
+				\begin{figure}[!htb]
+					\centering
+					\begin{minipage}{0.5\textwidth}
+						\begin{tabular}{p{0.95\textwidth}}
+							If it is assumed that the zeroth pass IS NOT
+							 counted as one of the two passes,
+							
+							\begin{itemize}
+								\item Number of Passes = 1 + log$_{B-1} \lceil {20000} / {B} \rceil$ = 3
+								
+								\item log$_{B-1} \lceil {20000} / {B} \rceil$ = 2
+								
+								\item if B is chosen as 28:
+								
+								log$_{27} \lceil {20000} / {28} \rceil \stackrel{?}{=} $ 2
+								
+								$ \lceil 1.9938131981415528 \rceil \stackrel{?}{=} $ 2
+								
+								\item The answer is 28.
+							\end{itemize}
+						\end{tabular}
+					\end{minipage}%				
+					\begin{minipage}{0.5\textwidth}
+						\begin{tabular}{|p{0.95\textwidth}}
+							If it is assumed that the zeroth pass IS counted as one of the two passes,
+							
+							\begin{itemize}
+								\item Number of Passes = 1 + log$_{B-1} \lceil {20000} / {B} \rceil$ = 2
+								
+								\item log$_{B-1} \lceil {20000} / {B} \rceil$ = 1
+								
+								\item if B is chosen as 142:
+								
+								log$_{141} \lceil {20000} / {142} \rceil \stackrel{?}{=} $ 1
+								
+								$ \lceil 0.9997778442543881 \rceil \stackrel{?}{=} $ 1
+								
+								\item The answer is 142.
+							\end{itemize}
+						\end{tabular}
+					\end{minipage}
+				\end{figure}
+				
+			
+		\end{enumerate}
+		
+	\clearpage
+		
+	\section*{Exercise 2.3 (Indexing)}
+	
+		On the relation Cities(Name, Province, Population, KilometresFromAachen) we generate the following 2 queries:
+		
+		\begin{itemize}
+			\item Q1:
+				\begin{addmargin}[4em]{4em}
+					\begin{lstlisting}
+						SELECT Name , Province
+						FROM Cities
+						WHERE Population > 100000
+					\end{lstlisting}
+				\end{addmargin}
+				
+			\item Q2:
+				\begin{addmargin}[4em]{4em}
+					\begin{lstlisting}
+						SELECT Province , count ( city ) , sum ( Population )
+						FROM Cities
+						group by Province
+					\end{lstlisting}
+				\end{addmargin}
+				
+		\end{itemize}
+	
+		\bigskip
+		
+		\begin{enumerate}
+			
+		\item Briefly explain how a B+-tree index on Population could be used during processing of Q1.
+		
+			Solution: B+ Trees are used to organize the data in a database, such that data can be retrieved in an effective 			way. In the query example given above, we can build a b+ tree index on the attribute ‘population’. The advantage 			of doing this will be that we only need to traverse the right subtree of the node with population 10,000 to fetch 			data records with a population greater than 10,000. The This will reduce the costs and access time in comparison 			to a sequential selection algorithm.
+		\item Briefly explain why using a clustered index on Province would be more efficient than either a hash-table 			         	or B+-tree index during processing of Q2.
+		
+		     Solution:Indexing on a group by clause can be done by two methods-
+			\begin{enumerate}
+			    \item sorting (clustered index)
+			    \item hashing
+			\end{enumerate}
+           
+         	Implementation of clustered index on the group by attribute i.e. ‘province’ sort records in an alphabetical order by 			province name leading to faster execution time, as the data records in a clustered index are located close to each 			other. If we use a hash table to index province name, it will demand more query processing, since the records are not 			actually close(worst case will be each being in the different page in the harddisk). Hence clustered index is a more effective way of indexing.
+
+		\end{enumerate}
+		
+		\clearpage
+		
+		\section*{Exercise 2.4 (Short Questions)}
+		
+		\begin{enumerate}
+			\item Give two examples of SQL constructs/semantics not expressible in relational algebra (RA).\\
+			SQL is more expressive than relational algebra. These operations cannot be expressed in Relational Algebra:
+			\begin{enumerate}
+				\item Order by
+				\item Group by
+			\end{enumerate}
+		
+			\item Explain the difference between DRC and TRC.
+			
+			\begin{figure}[!htb]
+				\centering
+				\begin{minipage}{0.5\textwidth}
+					\begin{tabular}{p{0.95\textwidth}}
+						TRC:
+						
+						\begin{itemize}
+							
+							\item variables are tuple variables
+
+							
+							\item format: $\{ S \;|\; p(S) \}$
+							
+							
+							\item one can NOT directly see how many fields are there in S without looking into p(S), as assignments have to be done in p(S) explicitly (unless S is an element of one of relational schemas) 
+						\end{itemize}
+					\end{tabular}
+				\end{minipage}%				
+				\begin{minipage}{0.5\textwidth}
+					\begin{tabular}{|p{0.95\textwidth}}
+						DRC:
+						
+						\begin{itemize}
+							\item variables are domain variables
+								
+							\item format: $\{ (x_{1}, x_{2}, ..., x_{n}) \;|\; p( (x_{1}, x_{2}, ..., x_{n}) ) \}$
+							
+							\item one can look at  $\{ (x_{1}, x_{2}, ..., x_{n})$ part and see how many variables are there, no need to explicitly assign values to x$_{i}$ variables
+						\end{itemize}
+					\end{tabular}
+				\end{minipage}
+			\end{figure}
+			
+			
+			
+			\item What does ”relational completeness” mean (in your own words, please)? Show that SQL is
+			relationally complete by enumerating SQL constructs corresponding to selection, projection,
+			cartesian product, union, and difference.
+			Solution: A query language is said to be relationally complete if it can be expressed with relational algebra. Since SQL is a superset of relational algebra i.e. a more powerful language than relational algebra it is also called a relationally complete query language. SQL constructs that show its relational completeness are as follows:
+			\begin{enumerate}
+			    \item Selection :
+			    \\Relational Algebra: $ \sigma EmployeeId=6500(Employee)  $
+			    \\Query: select * from Employee where EmployeId=6500;
+			    \item Projection :
+			    \\ Relational Algebra: $\pi Name,Age(Employee)$
+			    \\Query: select Name,Age from Employee;
+			    \item Cartesian Product
+			    \\Relational Algebra: $Employee X Manager$
+			    \\Query : select * from Employee,Manager;
+			    \item Union:
+			    \\Relational Algebra: $ \pi Name(Employee) U \pi Name(Manager)$
+			    \\Query: select * from Employee or select * from Manager;
+			    \item Difference:
+			    \\Relational Algebra: Employee-Manager
+			    \\Query: select * from Employee where EmployeeId not in (select EmployeeId from Manager);
+			\end{enumerate}
+			
+			
+			
+			\item What is an unsafe query? Considering the schema given in exercise 1.1, give an example and
+			explain why it is important to disallow such queries.
+				\\Solution : An unsafe query is a query in relational calculus which returns an infinite. number of results. It is important to disallow such queries because a database should return results for a query in a finite amount of time.
+			\\Based on the schema in exercise 1.1, an example of an unsafe query on relation Employee is:\\
+             $\{ e | \neg (e \in employees)\}$
+        \\This query returns all objects which are not employees. The results of this query is infinite and thus the query is unsafe.
+		\end{enumerate}
+
+\end{document}          

@@ -1,0 +1,41 @@
+For Linux:
+
+	Installation of PostgreSQL:
+		(unfortunately, only for Ubuntu, but can be adapted to other distros)
+		# this is for postgre and its server
+		sudo apt get update
+		sudo apt install postgresql postgresql-contrib
+		
+		# this for pgAdmin, downloading it is not mandatory (GUI-like tool with performance metrics)
+		sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+		sudo apt install wget ca-certificates
+		wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add 
+		sudo apt update
+		sudo apt install pgadmin4	
+	
+	Installation of MongoDB:
+		https://docs.mongodb.com/compass/master/install/
+		https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+		
+		# there is also MongoDB Compass, a GUI tool to help visualize performance and interact with server
+	
+	Running PostgreSQL:
+		sudo -u postgres psql
+		\c databasename
+		
+	Postgres Import:
+		0) connect to postgres
+			sudo -u postgres psql
+		1) Create a DB
+			CREATE DATABASE db;
+		
+		2) execute sql file
+			psql -U postgres -h localhost -d db -f "filepath_to_sql"
+			
+		3) import the dump
+			(note that --no-password may be necessary if you did not change the password of db user named "postgres")
+			pg_restore --host localhost --port 5432 --username "postgres" --verbose --dbname "db" --section data path_to_db_file
+	
+		
+	
+	

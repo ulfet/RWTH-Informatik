@@ -1,0 +1,8 @@
+SPARK Installation Guide (Ubuntu 18.04)
+	sudo apt-add-repository ppa:webupd8team/java
+	sudo apt-get update
+	sudo apt-get install oracle-java8-installer
+	https://spark.apache.org/downloads.html (download spark-2.4.0-bin-hadoop2.7.tgz)
+	tar -xzvf spark-2.4.0-bin-hadoop2.7.tgz
+	cd spark-2.4.0-bin-hadoop2.7/bin
+	./pyspark

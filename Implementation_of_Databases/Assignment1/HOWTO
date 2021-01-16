@@ -1,0 +1,15 @@
+# install PostGreSQL
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+# create table
+sudo -u postgres psql
+CREATE DATABASE chinook OWNER postgres;
+\c chinook
+
+# import the table
+sudo -u postgres psql chinook < file_path_to_sql_file
+
+# ???
+
+# PROFIT

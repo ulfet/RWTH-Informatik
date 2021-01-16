@@ -1,0 +1,8 @@
+# ignore all logs
+*.log
+
+# ignore DB files, they have not extensions
+# folder name(just note for myself): db_files
+db18_large_custom
+db18_medium_custom
+# db18_small_custom

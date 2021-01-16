@@ -1,0 +1,506 @@
+\documentclass[10pt]{article}
+\usepackage[top=50pt,bottom=50pt,left=48pt,right=46pt]{geometry}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage[shortlabels]{enumitem}
+
+
+
+% for comment block
+\usepackage{verbatim}
+
+% for debug purposes
+% \usepackage{showframe}
+
+% for setting section start value
+%\setcounter{section}{2}
+
+% for code writing
+% \begin{lstlisting} code here \end{lstlisting}
+\usepackage{listings}
+\lstset{
+	% numbers=left,
+	breaklines=true,
+	tabsize=2,
+	basicstyle=\ttfamily,
+	literate={\ \ }{{\ }}1,
+	extendedchars=\true
+}
+
+
+
+\newcommand{\indentitem}{\setlength\itemindent{25pt}}
+
+
+
+% Title Page
+\title{Implementation of Databases \\ ~~~ \\ Assignment 1 \\ ~~~ \\ }
+\author{
+	Participants:\\
+	(sorted in last name order)\\
+	Ulfet CETIN\\ 
+	Shreya KAR\\
+	Samuel ROY\\	
+}
+\date{}
+
+\begin{comment}
+	TODO:
+		* Add your last names in the author part
+\end{comment}
+
+
+\begin{document}
+
+	\maketitle
+	
+	\clearpage
+	
+	\section*{Exercise 1.1 (Database Architecture)}
+	
+		\subsection*{Part1}
+		Five layers of Database Systems:
+		
+		\begin{enumerate}
+			\item Logical Data Structures:
+			This layer of DB translates and optimizes queries (transaction programs) written in SQL, which is also the set-oriented interface. This layer uses record-oriented interface to interface with Logical Access structures.
+			
+			\item Logical Access structures:
+			It maps physical objects to its logical representation, manages cursor, sort components and dictionary. This layer uses Internal record interface to interface with Storage structures. Auxiliary data structures used: Records, sets, keys, access paths 
+			
+			\item Storage Structures:
+			Storage Structure layer plays a key part in DBMS performance by implementing mapping functions and provides clustering facilities. Maintains all physical object representations, access path structures (B-Tree and internal catalogue information). This layer uses System buffer interface to interface with Page assignment. Auxiliary data structures used: B*Trees and Records.
+			
+			\item Page Assignment:
+			Page Assignment layer performs mapping of pages into physical blocks. It reduces the physical I/O by providing large DB buffer which act as page-oriented interface. This layer uses file interface to interface with File Management. Auxiliary Data structure used: page, block tables, DB buffer
+			
+			\item Memory Assignment Structures:
+			This layer operates on bit pattern stored on the physical layer. It works together with the operating system’s file management, which copes with different physical characteristics of each type of physical storage device. Device interface is used to interface with physical layer. Auxiliary Data structure used: VTOC, extent tables, system catalogue
+			
+			
+		\end{enumerate}
+		
+		
+		
+		Physical Layer:
+		
+		The physical layer consists of huge volumes of bits stored on non-volatile storage devices. The user makes use of DBMS to interpret the stored bits into information.
+		
+		\bigskip
+		
+		\bigskip
+		
+		\subsection*{Part2}
+		
+		\iffalse
+		Logical Data Structure
+		
+		Logical Access Structure
+		
+		Storage Structure
+		
+		Page Assignment Structure
+		
+		Memory Assignment Structure
+		\fi
+		
+		Tasks sorted in order to match the top-down architecture:
+		
+		
+		\begin{enumerate}
+			\indentitem
+			
+			\item (b) logical relation and cursor management | logical data		
+			
+			\item (d) access path management | logical access
+			
+			\item (e) view formulation and management | storage structure			
+			
+			\item (a) buffering | page assignment
+			
+			\item (c) media access | memory assignment
+		\end{enumerate}
+		
+		
+		\bigskip
+		
+		\bigskip
+		
+
+		% Ulfet will handle here.
+		
+		\subsection*{Part3}
+		% ? will handle here.
+		\begin{enumerate}[(a)]
+		    \item
+			    \begin{enumerate}[(1)]
+			        \item Data Independence is an important feature of DBMS which makes data independent of 		 				       applications.That is, applications are insulated from the way data is structured and stored.
+			        \item The goal of Data Independence is also to ensure that data is available to all applications.
+			        \item Data Independence is achieved through 3 layers of data abstraction i.e. External Schema, 						     Conceptual/Logical Schema and Physical Schema.
+			    \end{enumerate}
+		    
+		    \item 
+			    \begin{enumerate}[(1)]
+			        \item Data independence is an important feature of the DBMS because it ensures that changes made at one 					layer of data abstraction do not affect the other layers.It ultimately saves times and brings 					down the cost by reducing the number of modifications needed to be made to the data.
+			        \item Users(applications) are shielded from the changes made in the logical view of data, e.g. 							modifying a relation or schema . This is called logical independence. Similarly changes 	                                           pertaining to how data physically stored only need to be done in the physical view. This is                                             known as physical data independence.
+			    \end{enumerate}
+		    
+		    \item Data independence in the 5 layer DBS architecture is achieved as follows:
+		        \begin{enumerate}[(1)]
+		                       \item Layer 1 (Logical structures) : Position indicator and explicit relations of the 							     schema are hidden to ensure data independence.
+		            \item Layer 2 (Logical access paths): Data Independence is achieved by hiding the internal representation of 				   records in a database and hiding the access paths/number of paths to access data.
+		            \item Layer 3 (Storage Structures) : How the buffers are managed or data is logged is hidden from the above 				layers, which ensures data independence.
+		            \item Layer 4 (Page assignment structures): Data independence is maintained by hiding details of file 					mapping, indirect page assignment in this layer.
+		            \item Layer 5 (Memory assignment Structures): Technical details and  features of the external storage media 				are hidden to ensure data independence.
+
+		        \end{enumerate}
+		\end{enumerate}
+		
+	\clearpage
+		
+	\section*{Exercise 1.2 (Query Languages)}
+	
+		\subsection*{Relational Algebra}
+			\subsubsection*{1}
+			
+			% symbol gue
+			% \Pi 		Π
+			% \bowtie 	self-explanatory
+			% \rho		ρ
+			% \sigma	σ
+			% \leftarrow
+			
+			$ \rho( allEmployeeReportToPairs, \Pi_{EmployeeId, ReportsTo}(Employee) ) $
+			
+			:returns <EmployeeId, ReportsTo> pairs \\
+			
+			$ \rho( peopleReceiveReports, \Pi_{ReportsTo}(Employee)) $
+			
+			:returns <ReportsTo> \\
+			
+			$ \rho(peopleReporting, \Pi_{EmployeeId}( allEmployeeReportsToPairs \bowtie peopleReceiveReports ) ) $
+			
+			:returns <EmployeeId>\\
+			
+			$ \rho(personNotReporting, \Pi_{EmployeeId}(Employee) - peopleReporting) $
+			
+			:returns <EmployeeId> \\
+			
+			$ \rho(personNotReportingCity, \Pi_{City}(Employee \bowtie personNotReporting)) $
+			
+			:returns <City> \\
+			
+			$ \Pi_{FirstName, LastName}(Customer \bowtie personNotReportingCity) $
+		
+			
+			\subsubsection*{2}
+			
+			$ \rho(youngerThanThirtyFiveWhenEmployed, \Pi_{EmployeeId}( \sigma_{DATEDIFF(HireDate, BirthDate) < 35} Employee ) ) $
+
+			:returns <EmployeeId>\\
+			
+			$ \rho(youngerThanThirtyFiveWhenEmployedRenamed,$
+			
+			$\quad\quad \rho_{(SupportRepId \leftarrow EmployeeId)}(youngerThanThirtyFiveWhenEmployed) ) $
+			
+			:returns <SupportRepId>\\
+			
+			$ \Pi_{FirstName, LastName, Country}(Customer \bowtie youngerThanThirtyFiveWhenEmployedRenamed) $
+			
+			\subsubsection*{3}
+			
+			$ \rho(employeesHelpingBrazilians,
+			\Pi_{SupportRepId}( \sigma_{Country="Brazil"} Customer) ) $
+			
+			:returns <SupportRepId>\\
+			
+			$ \rho(employeesHelpingBraziliansRenamed, \rho_{EmployeeId \leftarrow SupportRepId}(employeesHelpingBrazilians) ) $
+			
+			:returns <EmployeeId>\\
+			
+			$ \rho(managersOfEmployees, \Pi_{ReportsTo}(Employee \bowtie employeesHelpingBrazilianCustomersRenamed  )) $
+			
+			:returns <ReportsTo>\\
+			
+			$ \rho(managersOfEmployeesRenamed, \rho_{EmployeeId \leftarrow ReportsTo}(managersOfEmployees) ) $
+			
+			:returns <EmployeeId>\\
+			
+			$ \Pi_{FirstName, LastName}(Employees \bowtie managersOfEmployeesRenamed) $
+			
+			\subsubsection*{4}
+			
+			$ \rho(allArtistID, \Pi_{ArtistId}(Artist)) $
+			
+			:returns <ArtistId>\\
+			
+			$ \rho(albumReleasedArtistIDs, \Pi_{ArtistId}(Album)) $
+
+			:returns <ArtistId>\\	
+			
+			allArtistID	- albumReleasedArtistIDs
+			
+		\clearpage	
+		
+		\subsection*{SQL}
+		
+			\subsubsection*{1}
+			
+				Find the names of customers who live in the same city as the top employee (The one not managed by anyone).
+				
+				\begin{lstlisting}
+				SELECT c."FirstName", c."LastName" 
+				FROM public."Customer" c
+				WHERE c."City" = 
+				(
+					SELECT e."City" 
+					FROM public."Employee" e
+					WHERE e."ReportsTo" is NULL OR e."ReportsTo" NOT IN
+					(
+						SELECT otherEmployee."EmployeeId" 
+						FROM public."Employee" otherEmployee
+						WHERE otherEmployee."EmployeeId" != e."EmployeeId"
+					)
+				);
+				\end{lstlisting}
+				
+			
+			\subsubsection*{2}
+
+				List the names and the countries of those customers who are supported by an employee
+				who was younger than 35 when hired. (HINT: For SQL use year as the first parameter in
+				TIMESTAMPDIFF(). For Relational ALgebra use the function DATEDIFF)
+				
+				\begin{lstlisting}
+				SELECT c."FirstName", c."LastName", c."Country"
+				FROM public."Customer" c
+				WHERE c."SupportRepId" IN
+				(
+					SELECT e."EmployeeId"
+					FROM public."Employee" e
+					WHERE e."HireDate" < e."BirthDate" + INTERVAL '35 years'
+				);
+				\end{lstlisting}
+			
+			\subsubsection*{3}
+			
+				Find the managers of employees supporting Brazilian customers.
+				
+				\begin{lstlisting}
+					SELECT DISTINCT m."FirstName", m."LastName"
+					FROM public."Employee" m, public."Employee" e, public."Customer" c
+					WHERE c."Country" = 'Brazil' AND 
+						c."SupportRepId" = e."EmployeeId" AND 
+						e."ReportsTo" = m."EmployeeId"
+				\end{lstlisting}
+				
+			
+			\subsubsection*{4}
+				Which artists did not make any albums at all? Include their names in your answer.
+				
+				\begin{lstlisting}
+					SELECT a."Name"
+					FROM public."Artist" a
+					WHERE a."ArtistId" NOT IN
+					(
+						SELECT al."ArtistId"
+						FROM public."Album" al
+					)
+				\end{lstlisting}
+				
+				Here is their names:
+				
+			\begin{lstlisting}
+
+				
+			Milton Nascimento & Bebeto
+			Azymuth
+			João Gilberto
+			Bebel Gilberto
+			Jorge Vercilo
+			Baby Consuelo
+			Ney Matogrosso
+			Luiz Melodia
+			Nando Reis
+			Pedro Luís & A Parede
+			Banda Black Rio
+			Fernanda Porto
+			Os Cariocas
+			A Cor Do Som
+			Kid Abelha
+			Sandra De Sá
+			Hermeto Pascoal
+			Barão Vermelho
+			Edson, DJ Marky & DJ Patife Featuring Fernanda Porto
+			Santana Feat. Dave Matthews
+			Santana Feat. Everlast
+			Santana Feat. Rob Thomas
+			Santana Feat. Lauryn Hill & Cee-Lo
+			Santana Feat. The Project G&B
+			Santana Feat. Maná
+			Santana Feat. Eagle-Eye Cherry
+			Santana Feat. Eric Clapton
+			Vinícius De Moraes & Baden Powell
+			Vinícius E Qurteto Em Cy
+			Vinícius E Odette Lara
+			Vinicius, Toquinho & Quarteto Em Cy
+			Motörhead & Girlschool
+			Peter Tosh
+			R.E.M. Feat. KRS-One
+			Simply Red
+			Whitesnake
+			Christina Aguilera featuring BigElf
+			Aerosmith & Sierra Leone's Refugee Allstars
+			Los Lonely Boys
+			Corinne Bailey Rae
+			Dhani Harrison & Jakob Dylan
+			Jackson Browne
+			Avril Lavigne
+			Big & Rich
+			Youssou N'Dour
+			Black Eyed Peas
+			Jack Johnson
+			Ben Harper
+			Snow Patrol
+			Matisyahu
+			The Postal Service
+			Jaguares
+			The Flaming Lips
+			Jack's Mannequin & Mick Fleetwood
+			Regina Spektor
+			Xis
+			Nega Gizza
+			Gustavo & Andres Veiga & Salazar
+			Rodox
+			Charlie Brown Jr.
+			Pedro Luís E A Parede
+			Los Hermanos
+			Mundo Livre S/A
+			Otto
+			Instituto
+			Nação Zumbi
+			DJ Dolores & Orchestra Santa Massa
+			Seu Jorge
+			Sabotage E Instituto
+			Stereo Maracana
+			Academy of St. Martin in the Fields, Sir Neville Marriner & William Bennett
+			\end{lstlisting}
+			
+			\subsubsection*{5}
+			
+			List the top 5 most purchased tracks over all.\\
+			
+			\bigskip
+			
+				Note that, in this database, there are more than 5 tracks that has been sold the most, based on TrackId.
+				
+				We asked this question in L2P.
+				
+				\bigskip
+				
+				
+				\hspace{0.5cm}There are three possible scenarios we found:
+				
+				\begin{enumerate}
+					\indentitem
+					
+					\item Same song by the same artist may exist in different albums, that we noticed. For this purpose, we assumed if the tuple (name of the artist, the name of the track) is the same for the very same tracks with different TrackId values, then tracks are regarded as the same, regardless of their TrackId values.
+
+					\item Looking for the tracks that have been sold the most based on the multiplication of the fields "Quantity" and "UnitPrice" from the table "Invoice"
+					
+					\item Looking for the tracks that have been sold the most based on the field "Quantity"
+					
+				\end{enumerate}
+				
+				We speculated the following foundings of our ideas on those three approaches:
+				
+				\begin{enumerate}
+					\indentitem
+					
+					\item The most feasible one; because this approach allows one to find which (the song name, the artist name) tuple "objects" have been sold the most, regardless of TrackId of the track.
+					
+					\item Feasible, but it observes "the tracks that have the same name by the same artist, but with different TrackId" as different.
+					
+					\item Also feasible, but not to the same extend as the first one; this approach allows one to find which tracks has been sold the most(in quantities), but counts the tracks that have the same name and the same artist as different.5
+			
+				\end{enumerate}
+				
+				\underline{Our actual answer is the "first approach"}, yet, we wanted to convey the idea that we analyzed the tables and determined that information given in assignment text is not enough:
+				
+				\begin{itemize}
+					\item 	e.g., there can be two song from same artist with the same track name, yet have different melodies/lyrics/arrangement, which also happens in real life, that cannot be count as "the same track" in a musical perspective.
+					
+					\item Yet, between those three approaches, only the first approach yields five pseudo-unique tracks that has been sold the most.
+					
+					\item  The rest of the approaches yield answers that are not unique $\rightarrow$ based on the ordering, top 5 changes.
+				\end{itemize}
+				
+				
+				
+				\bigskip
+			
+			Our answer(s) based on the assumptions given above:
+			
+			\clearpage
+			
+			\begin{enumerate}
+				\item \textbf{\underline{First approach: }} \\ \textbf{\underline{(this is our designated answer, in case submitting only one answer is mandatory)}}
+				
+				
+				\begin{lstlisting}
+				SELECT TrackName
+				FROM (
+					SELECT t1."Name" AS TrackName, SUM(inv."Quantity") as Total
+					FROM "Track" t1, "Artist" art, "Album" a1, "InvoiceLine" inv
+					WHERE
+						art."ArtistId" = a1."ArtistId" AND
+						a1."AlbumId" = t1."AlbumId" AND
+						t1."TrackId" = inv."TrackId"
+					GROUP BY (art."Name", t1."Name")
+					ORDER BY Total DESC
+					LIMIT 5
+				) as derivedTable;
+				\end{lstlisting}
+				
+				
+				\item Second approach:
+				\begin{lstlisting}
+				SELECT *
+				FROM public."Track"
+				WHERE "TrackId" IN
+				( 
+					SELECT "TrackId"
+					FROM public."InvoiceLine" 
+					GROUP BY "TrackId" 
+					ORDER BY SUM("Quantity"*"UnitPrice")
+					DESC 
+					LIMIT 5
+				);
+				\end{lstlisting}
+				
+				\item Third Approach
+				\begin{lstlisting}
+				SELECT *
+				FROM public."Track"
+				WHERE "TrackId" IN
+				( 
+					SELECT "TrackId"
+					FROM public."InvoiceLine" 
+					GROUP BY "TrackId" 
+					ORDER BY SUM("Quantity")
+					DESC 
+					LIMIT 5
+				);
+				\end{lstlisting}
+				
+				
+				
+			\end{enumerate}
+			
+			
+			
+			
+\end{document}          
