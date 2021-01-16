@@ -1,0 +1,7 @@
+# ignore all logs
+*.log
+
+# ignore LaTex related files
+*.aux
+*.gz
+*.out

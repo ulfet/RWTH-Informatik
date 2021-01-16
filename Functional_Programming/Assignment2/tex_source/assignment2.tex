@@ -1,0 +1,91 @@
+\documentclass[10pt]{article}
+\usepackage[top=50pt,bottom=50pt,left=50pt,right=50pt]{geometry}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+
+% used for enumerate based on different symbols
+% \begin{enumerate}[(a)] e.g.
+\usepackage[shortlabels]{enumitem}
+
+%	\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref} 
+
+% beautifully indenting an environment
+% args: left margin, right margin
+% \begin{addmargin}[1em]{2em} 
+% \end{addmargin}
+\usepackage{scrextend}
+
+% for centered p columns in tabular environment
+% \begin{tabular}{|P{2cm}|P{40mm}|P{4cm}|}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% set paragraph indent to 0
+% if you want to indent some paragraph, use \indentfirst command in front of them
+\setlength{\parindent}{0pt}
+\newcommand{\forceindent}{\leavevmode{\parindent=1em\indent}}
+
+
+% for scaling a tabular table
+\usepackage{graphicx}
+\usepackage{grffile}
+
+
+% for comment block
+\usepackage{verbatim}
+
+% for debug purposes
+% \usepackage{showframe}
+
+% for setting section start value
+% \setcounter{section}{6}
+
+% for code writing
+% \begin{lstlisting} code here \end{lstlisting}
+\usepackage{listings}
+\lstset{
+	% numbers=left,
+	breaklines=true,
+	tabsize=2,
+	literate={\ \ }{{\ }}1,
+	%	language=C,
+	basicstyle=\footnotesize\ttfamily, 
+	stepnumber=1,
+	%	aboveskip=-10pt,
+}
+
+% for dividing a page into many columns
+\usepackage{paracol}
+
+
+\newcommand{\indentitem}{\setlength\itemindent{25pt}}
+
+\begin{document}
+
+
+% so that newlines(enter key strokes) in plain text would be counted as authentic newlines
+%\bgroup\obeylines
+
+\author{
+	Ulfet CETIN - 391819\\
+	Alisafa GASIMOV - 392560\\
+	Orkhan HUSEYNOV - 374297\\	
+	Shreya KAR - 392325\\
+	(names sorted on last name basis)	
+}
+\title{
+	Functional Programming\\
+	Assignment 2
+}
+%\date{April 2019}
+
+%	\frontmatter
+\maketitle
+
+\end{document}
