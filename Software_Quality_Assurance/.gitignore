@@ -1,0 +1,14 @@
+# ignore all logs
+*.log
+
+# ignore LaTex related files
+*.aux
+*.gz
+*.out
+
+# ignore Java/Eclipse files
+*.prefs
+.idea*
+.classpath*
+.project*
+Assignment3/emailvalidator-tests-master/.gitignore
