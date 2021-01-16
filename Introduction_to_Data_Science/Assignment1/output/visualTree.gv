@@ -1,0 +1,93 @@
+// Decision Tree
+digraph {
+	relationship [label=relationship]
+	Husband [label=Husband]
+	relationship -> Husband
+	education [label=education]
+	Husband -> education
+	"Not-in-family" [label="Not-in-family"]
+	relationship -> "Not-in-family"
+	"<=50K2" [label="<=50K"]
+	"Not-in-family" -> "<=50K2"
+	Unmarried [label=Unmarried]
+	relationship -> Unmarried
+	"<=50K3" [label="<=50K"]
+	Unmarried -> "<=50K3"
+	"Own-child" [label="Own-child"]
+	relationship -> "Own-child"
+	"<=50K4" [label="<=50K"]
+	"Own-child" -> "<=50K4"
+	Wife [label=Wife]
+	relationship -> Wife
+	">50K5" [label=">50K"]
+	Wife -> ">50K5"
+	"Other-relative" [label="Other-relative"]
+	relationship -> "Other-relative"
+	"<=50K6" [label="<=50K"]
+	"Other-relative" -> "<=50K6"
+	education [label=education]
+	Bachelors [label=Bachelors]
+	education -> Bachelors
+	">50K7" [label=">50K"]
+	Bachelors -> ">50K7"
+	"11th" [label="11th"]
+	education -> "11th"
+	"<=50K8" [label="<=50K"]
+	"11th" -> "<=50K8"
+	"HS-grad" [label="HS-grad"]
+	education -> "HS-grad"
+	">50K9" [label=">50K"]
+	"HS-grad" -> ">50K9"
+	"Some-college" [label="Some-college"]
+	education -> "Some-college"
+	">50K10" [label=">50K"]
+	"Some-college" -> ">50K10"
+	"Assoc-voc" [label="Assoc-voc"]
+	education -> "Assoc-voc"
+	">50K11" [label=">50K"]
+	"Assoc-voc" -> ">50K11"
+	Doctorate [label=Doctorate]
+	education -> Doctorate
+	">50K12" [label=">50K"]
+	Doctorate -> ">50K12"
+	"Assoc-acdm" [label="Assoc-acdm"]
+	education -> "Assoc-acdm"
+	">50K13" [label=">50K"]
+	"Assoc-acdm" -> ">50K13"
+	"7th-8th" [label="7th-8th"]
+	education -> "7th-8th"
+	"<=50K14" [label="<=50K"]
+	"7th-8th" -> "<=50K14"
+	Masters [label=Masters]
+	education -> Masters
+	">50K15" [label=">50K"]
+	Masters -> ">50K15"
+	"Prof-school" [label="Prof-school"]
+	education -> "Prof-school"
+	">50K16" [label=">50K"]
+	"Prof-school" -> ">50K16"
+	"9th" [label="9th"]
+	education -> "9th"
+	"<=50K17" [label="<=50K"]
+	"9th" -> "<=50K17"
+	"12th" [label="12th"]
+	education -> "12th"
+	"<=50K18" [label="<=50K"]
+	"12th" -> "<=50K18"
+	"10th" [label="10th"]
+	education -> "10th"
+	"<=50K19" [label="<=50K"]
+	"10th" -> "<=50K19"
+	"5th-6th" [label="5th-6th"]
+	education -> "5th-6th"
+	"<=50K20" [label="<=50K"]
+	"5th-6th" -> "<=50K20"
+	Preschool [label=Preschool]
+	education -> Preschool
+	"<=50K21" [label="<=50K"]
+	Preschool -> "<=50K21"
+	"1st-4th" [label="1st-4th"]
+	education -> "1st-4th"
+	"<=50K22" [label="<=50K"]
+	"1st-4th" -> "<=50K22"
+}
